@@ -4,36 +4,36 @@ import { auth } from "./firebase";
 import { useNavigate } from "react-router-dom";
 import AdoptionImage from "../images/Adoption.png";
 import AmbulanceImage from "../images/Ambulance.jpeg";
-import MissingImage from "../images/Missing.jpeg";
-import ReportImage from "../images/Report.jpg";
+import MissingImage from "../images/MissingPerson.jpg";
+import ReportImage from "../images/Reports.png";
 import Footer from "../components/Footer"; // Import Footer
 
 const cards = [
-  { 
-    id: 1, 
-    title: "Adoption", 
-    description: "Manage children adoption requests.", 
+  {
+    id: 1,
+    title: "Adoption",
+    description: "Manage children adoption requests.",
     image: AdoptionImage,
-    path: "/service-unavailable"
+    path: "/adoption"
   },
-  { 
-    id: 2, 
-    title: "Ambulance Drivers",  
-    description: "Manage ambulance driver records", 
+  {
+    id: 2,
+    title: "Ambulance Drivers",
+    description: "Manage ambulance driver records",
     image: AmbulanceImage,
-    path: "/ambulance-drivers"  
+    path: "/ambulance-drivers"
   },
-  { 
-    id: 3, 
-    title: "Missing", 
-    description: "Find missing person present at Edhi foundation", 
+  {
+    id: 3,
+    title: "Missing Persons",
+    description: "Find missing person present at Edhi foundation",
     image: MissingImage,
-    path: "/service-unavailable"
+    path: "/missing"
   },
-  { 
-    id: 4, 
-    title: "Reports", 
-    description: "Generate and download reports.", 
+  {
+    id: 4,
+    title: "Reports",
+    description: "Generate and download reports.",
     image: ReportImage,
     path: "/service-unavailable"
   }
@@ -48,82 +48,90 @@ function Dashboard() {
   };
 
   const handleCardClick = (path) => {
-    navigate(path);  
+    navigate(path);
   };
 
   return (
     <>
-      <Box sx={{ 
-        p: 4,
+      <Box sx={{
+        p: 3,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: '100vh',
-        backgroundColor: '#A6D6D6'  // Ensuring the background color
+        backgroundColor: '#ffffff',       // White background
+        boxShadow: 3,
+        background: 'linear-gradient(to bottom right, #cce5ff, #ffffff)', // light blue to white
       }}>
+
         {/* Main Card */}
-        <Card sx={{ 
-          width: '95%', 
-          maxWidth: '1400px', 
-          p: 4, 
+        <Card sx={{
+          width: '100%',
+          maxWidth: '2000px',
+          p: 8,
           boxShadow: 6,
           borderRadius: 4,
           backgroundColor: 'rgba(255, 255, 255, 0.95)',
           margin: 'auto'
         }}>
           {/* Navbar-like Box */}
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: '#48A6A7',
-            padding: '10px 20px',
-            borderRadius: '5px',
-            boxShadow: 2,
-            marginBottom: 3
-          }}>
-            <Typography 
-              variant="h3" 
-              align="center" 
-              gutterBottom 
-              sx={{ 
-                color: 'white', 
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              background: 'linear-gradient(90deg, #005f73, #48A6A7)',
+              padding: '16px 32px',
+              borderRadius: '12px',
+              boxShadow: 4,
+              marginBottom: 4,
+            }}
+          >
+            <Typography
+              variant="h4"
+              align="center"
+              sx={{
+                color: 'white',
                 fontWeight: 'bold',
-                mb: 1,
-                textTransform: 'uppercase'
+                textTransform: 'uppercase',
+                letterSpacing: 1,
               }}
             >
               Welcome to the Dashboard
             </Typography>
           </Box>
 
+
           {/* Cards Grid Layout */}
           <Grid container spacing={4} justifyContent="center">
             {cards.map((card, index) => (
-              <Grid item xs={12} sm={6} lg={3} key={card.id}>
+              <Grid item xs={12} sm={6} md={6} lg={6} key={card.id}>
                 <Zoom in={true} style={{ transitionDelay: `${index * 100}ms` }}>
-                  <Card sx={{ 
-                    height: '100%', 
-                    display: 'flex', 
+                  <Card sx={{
+                    height: '370',
+                    maxWidth: 500, // 👈 Optional: limits width a bit
+                    margin: 'auto', // 👈 Centered if width limited
+                    display: 'flex',
                     flexDirection: 'column',
                     boxShadow: 4,
+                    borderRadius: 3,
                     transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                     '&:hover': {
-                      transform: 'scale(1.05)',
+                      transform: 'scale(1.08)',
                       boxShadow: 8
                     }
                   }}>
-                    <CardMedia 
-                      component="img" 
-                      sx={{ 
+                    <CardMedia
+                      component="img"
+                      sx={{
                         height: 250,
                         width: '100%',
                         objectFit: 'cover',
                         borderTopLeftRadius: '4px',
                         borderTopRightRadius: '4px'
                       }}
-                      image={card.image} 
+                      image={card.image}
                       alt={card.title}
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
@@ -135,11 +143,11 @@ function Dashboard() {
                       </Typography>
                     </CardContent>
                     <Box sx={{ p: 2, textAlign: 'center' }}>
-                      <Button 
-                        variant="contained" 
+                      <Button
+                        variant="contained"
                         fullWidth
                         size="medium"
-                        onClick={() => handleCardClick(card.path)}  
+                        onClick={() => handleCardClick(card.path)}
                         sx={{
                           backgroundColor: '#48A6A7',
                           fontSize: '0.9rem',
@@ -162,7 +170,7 @@ function Dashboard() {
 
       {/* Footer Component */}
       <Box>
-       
+
       </Box>
     </>
   );

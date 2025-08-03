@@ -15,7 +15,7 @@ const Footer = () => {
       {/* Scrolling Ticker */}
       <div className="ticker-wrap py-2">
         <div className="ticker font-semibold text-center">
-          <p>Final Year Project | Batch S3E25 | Powered by Edhi Welfare Dashboard</p>
+          <p>Final Year Project | Batch SE22 | Powered by Edhi Welfare</p>
         </div>
       </div>
 
@@ -24,7 +24,7 @@ const Footer = () => {
         {/* Centered Title and Subtitle */}
         <div className="text-center">
           <h2 className="text-2xl font-bold">Saya-e-Falah Dashboard</h2>
-          <p className="text-sm text-gray-500 mt-1">Final Year Project | Batch BSSE25</p>
+          <p className="text-sm text-gray-500 mt-1">Final Year Project | Batch SE22</p>
         </div>
 
         {/* Social Icons */}
