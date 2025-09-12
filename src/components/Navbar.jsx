@@ -1,11 +1,8 @@
-import { AppBar, Toolbar, IconButton, Button, Box } from "@mui/material";
-import { Brightness4, Brightness7 } from "@mui/icons-material";
+import { AppBar, Toolbar, Button, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "./firebase";
 import Logo from "../images/saya.jpg";
 
-function Navbar({ toggleTheme, darkMode }) {
+function Navbar() {
   const navigate = useNavigate();
 
   const navLinks = [
@@ -16,16 +13,11 @@ function Navbar({ toggleTheme, darkMode }) {
     { title: "Dashboard", path: "/dashboard" },
   ];
 
-  const handleLogout = async () => {
-    await signOut(auth);
-    navigate("/login");
-  };
-
   return (
     <AppBar
       position="static"
       sx={{
-        backgroundColor: darkMode ? "#1e1e1e" : "#ffffff",
+        backgroundColor: "#ffffff",  // Fixed light background
         boxShadow: 3,
         paddingY: 1,
       }}
@@ -53,10 +45,10 @@ function Navbar({ toggleTheme, darkMode }) {
               sx={{
                 fontWeight: 600,
                 textTransform: "none",
-                color: darkMode ? "#f5f5f5" : "#48A6A7",
+                color: "#48A6A7",  // Fixed blue color
                 fontSize: "1rem",
                 '&:hover': {
-                  backgroundColor: darkMode ? "#333" : "#e3f2fd",
+                  backgroundColor: "#e3f2fd",
                   borderRadius: 1,
                 },
               }}
@@ -64,28 +56,6 @@ function Navbar({ toggleTheme, darkMode }) {
               {link.title}
             </Button>
           ))}
-        </Box>
-
-        {/* Theme Toggle + Logout */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <IconButton onClick={toggleTheme} sx={{ color: darkMode ? "#fff" : "#48A6A7" }}>
-            {darkMode ? <Brightness7 /> : <Brightness4 />}
-          </IconButton>
-          <Button
-            onClick={handleLogout}
-            variant="contained"
-            sx={{
-              backgroundColor: "#48A6A7",
-              color: "#fff",
-              fontWeight: 600,
-              textTransform: "none",
-              '&:hover': {
-                backgroundColor: "#48A6A7",
-              },
-            }}
-          >
-            Logout
-          </Button>
         </Box>
       </Toolbar>
     </AppBar>

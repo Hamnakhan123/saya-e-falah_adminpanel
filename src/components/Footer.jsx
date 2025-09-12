@@ -1,56 +1,106 @@
-import React from 'react';
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaTwitter,
-  FaTiktok,
-  FaYoutube
-} from 'react-icons/fa';
-
-import './footer.css';
+import React from "react";
+import { Box, Typography, Grid, IconButton, Link } from "@mui/material";
+import { Facebook, Instagram, Twitter, YouTube } from "@mui/icons-material";
 
 const Footer = () => {
   return (
-    <div className="white-600 text-green pt-2">
-      {/* Scrolling Ticker */}
-      <div className="ticker-wrap py-2">
-        <div className="ticker font-semibold text-center">
-          <p>Final Year Project | Batch SE22 | Powered by Edhi Welfare</p>
-        </div>
-      </div>
+    <Box
+      sx={{
+        backgroundColor: "#48A6A7", // Dark blue theme
+        color: "#fff",
+        padding: "40px 20px",
+        mt: 5,
+      }}
+    >
+      <Grid container spacing={4} justifyContent="center">
+        
+        {/* Logo / About */}
+        <Grid item xs={12} md={4}>
+          <Typography variant="h6" fontWeight="bold">
+            Saya-e-Falah Dashboard
+          </Typography>
+          <Typography variant="body2" sx={{ mt: 1, color: "#bbdefb" }}>
+            Final Year Project | Batch SE22
+            <br />
+            Powered by Edhi Welfare Organization
+          </Typography>
+        </Grid>
 
-      {/* Main Footer Content */}
-      <footer className="bg-white text-gray-800 max-w-4xl mx-auto rounded-2xl shadow-md px-6 py-10 mt-6 space-y-8">
-        {/* Centered Title and Subtitle */}
-        <div className="text-center">
-          <h2 className="text-2xl font-bold">Saya-e-Falah Dashboard</h2>
-          <p className="text-sm text-gray-500 mt-1">Final Year Project | Batch SE22</p>
-        </div>
+        {/* Quick Links */}
+        <Grid item xs={12} md={4}>
+          <Typography variant="subtitle1" fontWeight="bold">
+            Quick Links
+          </Typography>
+          <Box
+            sx={{
+              mt: 1,
+              display: "flex",
+              flexDirection: "column",
+              gap: "6px",
+            }}
+          >
+            {["Home", "News", "About", "Contact Us", "Our Team"].map((item) => (
+              <Link
+                key={item}
+                href="#"
+                underline="none"
+                sx={{
+                  color: "#bbdefb",
+                  transition: "all 0.3s ease",
+                  "&:hover": { color: "#ffeb3b", pl: 1 },
+                }}
+              >
+                {item}
+              </Link>
+            ))}
+          </Box>
+        </Grid>
 
-        {/* Social Icons */}
-        <div className="flex justify-center space-x-6">
-          <FaFacebookF className="text-green-600 text-2xl hover:scale-110 transition-transform duration-200" />
-          <FaInstagram className="text-green-600 text-2xl hover:scale-110 transition-transform duration-200" />
-          <FaTwitter className="text-green-600 text-2xl hover:scale-110 transition-transform duration-200" />
-          <FaTiktok className="text-green-600 text-2xl hover:scale-110 transition-transform duration-200" />
-          <FaYoutube className="text-green-600 text-2xl hover:scale-110 transition-transform duration-200" />
-        </div>
+        {/* Social Media */}
+        <Grid item xs={12} md={4}>
+          <Typography variant="subtitle1" fontWeight="bold">
+            Follow Us
+          </Typography>
+          <Box sx={{ mt: 1 }}>
+            {[
+              { icon: <Facebook />, color: "#1877F2" },
+              { icon: <Instagram />, color: "#E1306C" },
+              { icon: <Twitter />, color: "#1DA1F2" },
+              { icon: <YouTube />, color: "#FF0000" },
+            ].map((social, i) => (
+              <IconButton
+                key={i}
+                sx={{
+                  color: "#bbdefb",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    color: social.color,
+                    transform: "scale(1.2)",
+                  },
+                }}
+              >
+                {social.icon}
+              </IconButton>
+            ))}
+          </Box>
+        </Grid>
+      </Grid>
 
-        {/* Navigation Links */}
-        <div className="flex justify-center flex-wrap gap-x-6 font-medium text-gray-700 pt-2">
-          <span className="hover:text-green-600 cursor-pointer">Home</span>
-          <span className="hover:text-green-600 cursor-pointer">News</span>
-          <span className="hover:text-green-600 cursor-pointer">About</span>
-          <span className="hover:text-green-600 cursor-pointer">Contact Us</span>
-          <span className="hover:text-green-600 cursor-pointer">Our Team</span>
-        </div>
-
-        {/* Copyright */}
-        <div className="text-sm text-gray-500 text-center pt-4">
-          © {new Date().getFullYear()} Designed by <span className="font-semibold">the Students of Jinnah University for Women</span>
-        </div>
-      </footer>
-    </div>
+      {/* Bottom Line */}
+      <Box
+        sx={{
+          textAlign: "center",
+          mt: 4,
+          pt: 2,
+          borderTop: "1px solid rgba(255,255,255,0.2)",
+          color: "#bbdefb",
+        }}
+      >
+        <Typography variant="body2">
+          © {new Date().getFullYear()} Saya-e-Falah. All rights reserved.
+        </Typography>
+      </Box>
+    </Box>
   );
 };
 

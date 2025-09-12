@@ -6,29 +6,30 @@ import { useState, useMemo } from "react";
 import SignupForm from "./components/SignupForm";
 import LoginForm from "./components/LoginForm";
 import Dashboard from "./components/Dashboard";
-import AmbulanceDriversList from './components/AmbulanceDriversList';
-import PrivateRoute from './routes/PrivateRoute';
+import AmbulanceDriversList from "./components/AmbulanceDriversList";
+import PrivateRoute from "./routes/PrivateRoute";
 import MissingForm from "./components/MissingForm";
-import MissingList from './components/MissingList';
+import MissingList from "./components/MissingList"; // ✅ Fixed import
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LandingPage from "./components/LandingPage";
-import ServiceUnavailablePage from "./components/ServiceUnavailablePage"; // Import ServiceUnavailablePage
-
+import ServiceUnavailablePage from "./components/ServiceUnavailablePage";
+import AdoptionApplicationList from "./components/AdoptionApplicationList";
 function App() {
   const [darkMode, setDarkMode] = useState(false);
 
-  const theme = useMemo(() =>
-    createTheme({
-      palette: {
-        mode: darkMode ? 'dark' : 'light',
-      },
-    }),
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: darkMode ? "dark" : "light",
+        },
+      }),
     [darkMode]
   );
 
   const toggleTheme = () => {
-    setDarkMode(prev => !prev);
+    setDarkMode((prev) => !prev);
   };
 
   return (
@@ -48,7 +49,6 @@ function AppContent({ toggleTheme, darkMode }) {
 
   return (
     <>
-      {/* Conditionally show Navbar */}
       {!hideNavbar && <Navbar toggleTheme={toggleTheme} darkMode={darkMode} />}
 
       <Routes>
@@ -56,18 +56,24 @@ function AppContent({ toggleTheme, darkMode }) {
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/login" element={<LoginForm />} />
-        
+
         {/* Private Routes */}
         <Route path="/dashboard" element={<PrivateRoute element={Dashboard} />} />
         <Route path="/ambulance-drivers" element={<PrivateRoute element={AmbulanceDriversList} />} />
         <Route path="/missing" element={<PrivateRoute element={MissingForm} />} />
+       
         <Route path="/missing-list" element={<PrivateRoute element={MissingList} />} />
-        
-        {/* Service Unavailable Page Route */}
+<Route
+  path="/adoption-application-list"
+  element={<PrivateRoute><AdoptionApplicationList /></PrivateRoute>}
+/>
+<Route path="/adoption" element={<AdoptionApplicationList />} />
+
+
+        {/* Service Unavailable Page */}
         <Route path="/service-unavailable" element={<ServiceUnavailablePage />} />
       </Routes>
 
-      {/* Footer visible on all pages */}
       <Footer />
     </>
   );
